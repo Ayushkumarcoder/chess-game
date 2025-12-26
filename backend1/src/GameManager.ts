@@ -29,6 +29,8 @@ export class GameManager{
         //check the message type and handle accordingly
         socket.on('message', (data) => {
             const message = JSON.parse(data.toString());
+
+            
             if(message.type === INIT_GAME){
                 //if the message type is to start a game, we have to check if there is a pending user
                 if(this.pendingUser){
@@ -46,11 +48,7 @@ export class GameManager{
             if(message.type === MOVE){
                 const game = this.games.find(g => g.player1 === socket || g.player2 === socket);
                 if(game){
-                    //update the game state with the new move
-                    game.moves.push(message.move);
-                    //broadcast the move to both players
-                    game.player1.send(JSON.stringify({type: MOVE, move: message.move}));
-                    game.player2.send(JSON.stringify({type: MOVE, move: message.move}));
+                    game.makeMove(socket, message.move);
                 }
 
             }
