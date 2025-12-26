@@ -2,10 +2,10 @@ import type WebSocket from "ws";
 
 export class Game{
     // Game class implementation
-    private player1: WebSocket;
-    private player2: WebSocket;
+    public player1: WebSocket;
+    public player2: WebSocket;
     private board: string;
-    private moves: string[];
+    public moves: string[];
     private startTime: Date;
 
     constructor(player1: WebSocket, player2: WebSocket){
@@ -14,5 +14,25 @@ export class Game{
         this.board = "";
         this.moves = [];
         this.startTime = new Date();
+    }
+
+    makeMove(socket: WebSocket, move: string){
+        // Logic to make a move
+        
+        //first you need to validate if it's the player's turn 
+        //then is the move valid
+
+
+
+        //update the board state
+        //record the move
+        
+
+        //check if the game is over
+
+
+        //notify both players of the updated game state
+
+
     }
 }
